@@ -1,0 +1,15 @@
+<template name="home">
+    <div class="container">
+        <ul>
+            {{#each tasks}}
+                {{> task}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+
+
+<template name="task">
+    <li>{{text}}</li>
+</template>
