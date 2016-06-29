@@ -2,6 +2,7 @@ Router.configure({
     layoutTemplate: 'indexLayout',
 });
 import { Bills } from '../../api/bills/lists.js';
+import {Records} from '../../api/records/lists.js';
 Router.route('/', {name: 'home'});
  
 //账本
@@ -20,8 +21,21 @@ Router.route("/bills/:_id/edit",{
     }
 });
 
-//添加明细
-Router.route("/bills/:_id/records",{name: 'records'});
+//明细
+Router.route("/bills/:_id/records",{
+    name: 'records',
+    data: function(){
+        Meteor.subscribe("myRecords",this.params._id,Meteor.userId());
+        return Bills.findOne({_id: this.params._id});
+    }
+});
+//添加记录
+Router.route("/bills/:_id/records/add",{
+    name: 'addRecord',
+    data: function(){
+    return Bills.findOne({_id: this.params._id});
+    },
+});
 
 AccountsTemplates.configureRoute('signIn',{
     name: 'signin',
