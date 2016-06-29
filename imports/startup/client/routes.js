@@ -1,16 +1,24 @@
 Router.configure({
     layoutTemplate: 'indexLayout',
 });
-
+import { Bills } from '../../api/bills/lists.js';
 Router.route('/', {name: 'home'});
+ 
 //账本
-Router.route('/books', {name: 'books',
-    data:function(){
-         return Meteor.subscribe('myBooks');
-    }
-});
+Router.route('/books', {name: 'myBooks'});
 //添加账本
 Router.route('/books/addBook', {name: 'addBook'});
+
+
+// 账本
+Router.route("/bills",{name: 'bills'});
+Router.route("/bills/add",{name: 'addBill'});
+Router.route("/bills/:_id/edit",{
+    name: 'editBill',
+    data: function(){
+        return Bills.findOne({_id:this.params._id}) ;
+    }
+});
 
 AccountsTemplates.configureRoute('signIn',{
     name: 'signin',

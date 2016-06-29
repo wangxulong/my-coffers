@@ -23,3 +23,5 @@ useraccounts:bootstrap
 accounts-password
 iron:router
 useraccounts:iron-routing
+momentjs:moment
+rgoomar:bootstrap-validator

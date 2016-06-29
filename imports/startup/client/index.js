@@ -5,5 +5,16 @@ import '../../ui/templates/books.html';
 
 import '../../api/books.js';
 import '../../ui/templates/book.js';
+import  '../../../imports/api/books.js';
 
 
+// 账单
+import '../../ui/templates/bills/bills.js';
+
+import '../../api/bills/lists.js';
+import { Template } from 'meteor/templating';
+import  moment from 'moment';
+
+Template.registerHelper('formatDate', function(date) {
+    return moment(date).format('YYYY-MM-DD HH:mm ');
+});

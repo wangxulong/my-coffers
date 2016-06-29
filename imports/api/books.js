@@ -10,11 +10,14 @@ export const Books = new Mongo.Collection('books');
 
 if (Meteor.isServer) {
     // This code only runs on the server
-    Meteor.publish('myBooks', function myBooksPublication() {
-        console.info(this.userId+"===============");
-        return Books.find({owner:this.userId});
+    Meteor.publish('myBooks', function myBooksPublication(owner) {
+        console.info(owner+"============================");
+        return Books.find({owner:owner});
     });
 };
+
+
+
 Meteor.methods({
     'books.insert'(book) {
         check(book.title, String);

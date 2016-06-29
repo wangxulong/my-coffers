@@ -1,14 +1,12 @@
 <!--账单的列表-->
-<template name="books">
+<template name="myBooks">
     <div class="col-sm-10 col-sm-offset-1">
         <div style="margin-bottom: 5px;">
             <a class="btn btn-primary" href="{{ pathFor 'addBook' }}">添加账本</a>
         </div>
 
         <div class="books">
-            {{#each myBooks}}
-                <div class="alert alert-info text-center" role="alert">{{title}}</div>
-            {{/each}}
+
             <div class="alert alert-info text-center" role="alert">机制</div>
             <div class="alert alert-warning" role="alert">...</div>
             <div class="alert alert-danger" role="alert">...</div>
