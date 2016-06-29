@@ -30,3 +30,17 @@ AccountsTemplates.configureRoute('signIn',{
     layoutTemplate: 'indexLayout',
 });
 AccountsTemplates.configureRoute('signUp');
+
+
+
+
+var requireLogin = function() {
+    if (! Meteor.user()) {
+        this.render('login');
+    } else {
+        this.next();
+    }
+}
+
+Router.onBeforeAction(requireLogin);
+//Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
