@@ -10,8 +10,10 @@ import  '../../../imports/api/books.js';
 
 // 账单
 import '../../ui/templates/bills/bills.js';
-
 import '../../api/bills/lists.js';
+//账单明细
+import '../../ui/templates/records/records.js';
+
 import { Template } from 'meteor/templating';
 import  moment from 'moment';
 

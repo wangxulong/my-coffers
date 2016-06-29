@@ -20,6 +20,9 @@ Router.route("/bills/:_id/edit",{
     }
 });
 
+//添加明细
+Router.route("/bills/:_id/records",{name: 'records'});
+
 AccountsTemplates.configureRoute('signIn',{
     name: 'signin',
     path: '/login',
