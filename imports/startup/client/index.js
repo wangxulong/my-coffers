@@ -12,6 +12,7 @@ import  '../../../imports/api/books.js';
 import '../../ui/templates/bills/bills.js';
 import '../../api/bills/lists.js';
 //账单明细
+import '../../api/records/lists.js';
 import '../../ui/templates/records/records.js';
 
 import { Template } from 'meteor/templating';

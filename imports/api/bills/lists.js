@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
 //账本表
 export const Bills = new Mongo.Collection('bills');
 
@@ -15,3 +16,4 @@ Bills.deny({
         return (_.without(fieldNames, 'title', 'description').length > 0);
     }
 });
+

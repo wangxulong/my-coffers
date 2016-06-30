@@ -2,8 +2,15 @@ Router.configure({
     layoutTemplate: 'indexLayout',
 });
 import { Bills } from '../../api/bills/lists.js';
+import { Meteor } from 'meteor/meteor';
 import {Records} from '../../api/records/lists.js';
-Router.route('/', {name: 'home'});
+Router.route('/', {
+    name: 'home',
+    waitOn: function(){
+        return  [Meteor.subscribe('myBills',Meteor.userId()), Meteor.subscribe('myAllRecords',Meteor.userId())];
+    },
+
+});
  
 //账本
 Router.route('/books', {name: 'myBooks'});

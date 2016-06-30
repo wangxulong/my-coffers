@@ -16,6 +16,7 @@ Meteor.methods({
         Bills.insert({
             title:bill.title,
             description:bill.description,
+            isSpend:true,
             createdAt: new Date(),
             owner: this.userId,
         });

@@ -6,9 +6,9 @@
         <div class="bills">
             {{#each myRecords}}
             <div class="alert alert-success " role="alert">
-                <p>{{spendTime}}</p>
-                <p> {{description}}</p>
-                <p>{{money}}</p>
+                <p> {{ formatDate spendTime}}</p>
+                <p> {{description}}  </p>
+                <p> ￥ {{money}}</p>
                 <p>
                     <a href="{{ pathFor 'editRecord' }}" class="btn btn-info btn-sm">
                         <span class="glyphicon  glyphicon-edit"></span> 修改

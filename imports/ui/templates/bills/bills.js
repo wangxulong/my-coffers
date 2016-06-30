@@ -4,11 +4,15 @@ import { Meteor } from 'meteor/meteor';
 import './bills.html';//引入模板
 import '../../../api/bills/methods.js';
 import { Bills } from '../../../api/bills/lists.js'
-Meteor.subscribe("myBills",Meteor.userId());
+
+
+Template.bills.onCreated (function () {
+    Meteor.subscribe("myBills",Meteor.userId());
+});
 
 Template.bills.helpers({
      myBills(){
-         return Bills.find({owner:Meteor.userId()},{ sort: { createdAt: -1 } });
+         return Bills.find({owner:Meteor.userId(),isSpend:true},{ sort: { createdAt: -1 } });
     }, 
 });
 Template.bills.events({

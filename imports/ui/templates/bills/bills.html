@@ -2,12 +2,17 @@
 <template name="bills">
     <div class="col-sm-10 col-sm-offset-1">
         <div style="margin-bottom: 5px;">
-            <a class="btn btn-primary" href="{{ pathFor 'addBill'}}">添加账本</a>
+            <a class="btn btn-primary" href="{{ pathFor 'addBill'}}">
+               <span class="glyphicon glyphicon-floppy-open"></span>  添加花费账本
+            </a>
+            <a class="btn btn-primary" href="{{ pathFor 'addInBill'}}">
+                <span class="glyphicon glyphicon-floppy-save"></span>  添加收入账本
+            </a>
         </div>
         <div class="bills">
             {{#each myBills}}
                 <div class="alert alert-success " role="alert">
-                        <h4>{{title}}</h4>
+                        <h4>{{title}} -- {{ formatDate createdAt }}</h4>
                         <p> {{description}}</p>
                         <p>
                             <a href="{{ pathFor 'editBill' }}" class="btn btn-info btn-sm">

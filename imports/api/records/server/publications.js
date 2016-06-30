@@ -6,4 +6,7 @@ if (Meteor.isServer) {
     Meteor.publish('myRecords', function(billId,owner) {
         return Records.find({owner:owner,billId:billId});
     });
+    Meteor.publish('myAllRecords', function(owner) {
+        return Records.find({owner:owner});
+    });
 }
