@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import './bills.html';//引入模板
 import '../../../api/bills/methods.js';
 import { Bills } from '../../../api/bills/lists.js'
+import { Records } from '../../../api/records/lists.js'
 
 
 Template.bills.onCreated (function () {
@@ -12,7 +13,17 @@ Template.bills.onCreated (function () {
 
 Template.bills.helpers({
      myBills(){
-         return Bills.find({owner:Meteor.userId(),isSpend:true},{ sort: { createdAt: -1 } });
+         let myBills = Bills.find({owner:Meteor.userId(),isSpend:true},{ sort: { createdAt: -1 } }).fetch();
+         for(let bill of myBills){
+             let myBillRecords = Records.find({owner:Meteor.userId(),billId:bill._id}).fetch();
+             let allMoney = 0;
+             for(let billRecord of myBillRecords){
+                 allMoney = allMoney+billRecord.money;
+             }
+             bill.spendMoney = allMoney;
+             bill.recordCount = myBillRecords.length;
+         }
+         return myBills;
     }, 
 });
 Template.bills.events({
@@ -37,11 +48,13 @@ Template.addBill.events({
             title: $(e.target).find('[name=title]').val(),
             description: $(e.target).find('[name=description]').val()
         };
-        Meteor.call('bills.insert',bill, function(error){
+        Meteor.call('bills.insert',bill, function(error,result){
            if(error){
-               console.info(error.reason);
-              return false;
-           } 
+              return alert(error.reason);;
+           }
+            if( result.isExist){
+                return   alert('账本不允许重名');
+            }
             Router.go('bills');
         });
     }

@@ -2,6 +2,10 @@
     <div class="col-sm-10 col-sm-offset-1">
         <div style="margin-bottom: 5px;">
             <a class="btn btn-primary" href="{{ pathFor 'addRecord'}}">添加记录</a>
+
+            <a class="btn btn-default" href="{{ pathFor 'bills'}}">
+                <span class="glyphicon glyphicon-menu-left"></span>  返回
+            </a>
         </div>
         <div class="bills">
             {{#each myRecords}}
@@ -43,6 +47,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">提交</button>
+            <a class="btn btn-default" href="{{ pathFor 'records'}}">
+                <span class="glyphicon glyphicon-menu-left"></span>  返回
+            </a>
         </form>
     </div>
 </template>

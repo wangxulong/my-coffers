@@ -5,14 +5,15 @@
             <a class="btn btn-primary" href="{{ pathFor 'addBill'}}">
                <span class="glyphicon glyphicon-floppy-open"></span>  添加花费账本
             </a>
-            <a class="btn btn-primary" href="{{ pathFor 'addInBill'}}">
-                <span class="glyphicon glyphicon-floppy-save"></span>  添加收入账本
+             <a class="btn btn-default" href="{{ pathFor 'home'}}">
+                <span class="glyphicon glyphicon-menu-left"></span>  返回
             </a>
         </div>
         <div class="bills">
             {{#each myBills}}
                 <div class="alert alert-success " role="alert">
-                        <h4>{{title}} -- {{ formatDate createdAt }}</h4>
+                        <h4>{{title}} -- ￥{{ spendMoney }}-- <span class="badge">{{ recordCount}}</span> </h4>
+                        <p>{{ formatDate createdAt }}</p>
                         <p> {{description}}</p>
                         <p>
                             <a href="{{ pathFor 'editBill' }}" class="btn btn-info btn-sm">
@@ -50,6 +51,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">提交</button>
+            <a class="btn btn-default" href="{{ pathFor 'bills'}}">
+                <span class="glyphicon glyphicon-menu-left"></span>  返回
+            </a>
         </form>
     </div>
 </template>
@@ -67,6 +71,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">提交</button>
+            <a class="btn btn-default" href="{{ pathFor 'bills'}}">
+                <span class="glyphicon glyphicon-menu-left"></span>  返回
+            </a>
         </form>
     </div>
 </template>

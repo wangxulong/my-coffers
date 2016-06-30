@@ -6,19 +6,29 @@ import { Bills } from './lists';
 
 Meteor.methods({
     'bills.insert'(bill){
-        check(bill.title, String);
-        check(bill.description, String);
         // 判断是否登录
         if (! this.userId) {
             Router.go('signin');
             return ;
         }
-        Bills.insert({
+        check(bill.title, String);
+        check(bill.description, String);
+        // 判断账本是否唯一
+        let result = Bills.findOne({owner:Meteor.userId(),title:bill.title});
+        if(result){
+            return {
+                isExist:true,
+                _id : result._id
+            };
+        }
+       let billId =  Bills.insert({
             title:bill.title,
             description:bill.description,
             isSpend:true,
             createdAt: new Date(),
             owner: this.userId,
         });
+        return {_id: billId};
+
     },
 });

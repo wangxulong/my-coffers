@@ -19,7 +19,12 @@ Router.route('/books/addBook', {name: 'addBook'});
 
 
 // 账本
-Router.route("/bills",{name: 'bills'});
+Router.route("/bills",{
+    name: 'bills',
+    waitOn: function(){
+        return  [Meteor.subscribe('myBills',Meteor.userId()), Meteor.subscribe('myAllRecords',Meteor.userId())];
+    },
+});
 Router.route("/bills/add",{name: 'addBill'});
 Router.route("/bills/:_id/edit",{
     name: 'editBill',

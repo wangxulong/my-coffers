@@ -21,6 +21,7 @@ function drawChart(){
     var option = {
         title : {
             text: '花费账单统计',
+            subtext: '共计：￥' +Session.get('totalSpendMoney')+'',
             x:'center'
         },
         tooltip : {
@@ -35,8 +36,7 @@ function drawChart(){
         toolbox: {
             show : true,
             feature : {
-                mark : {show: true},
-                dataView : {show: false, readOnly: false},
+               
                 magicType : {
                     show: true,
                     type: ['pie', 'funnel'],
@@ -50,7 +50,7 @@ function drawChart(){
                     }
                 },
                 restore : {show: true},
-                saveAsImage : {show: false}
+
             }
         },
         calculable : true,
@@ -86,14 +86,19 @@ function getLegendData(){
 function getSeriesData(){
     let myBills =  Bills.find({owner:Meteor.userId(),isSpend:true}).fetch();
     let seriesData = [];
+    let totalSpendMoney = 0;
     for(let bill of myBills){
         let myBillRecords = Records.find({owner:Meteor.userId(),billId:bill._id}).fetch();
         let allMoney = 0;
         for(let billRecord of myBillRecords){
             allMoney = allMoney+billRecord.money;
         }
+        totalSpendMoney = allMoney + totalSpendMoney;
         seriesData.push({name:bill.title,value:allMoney});
     }
+    //总的花费支出。。。。
+    Session.set('totalSpendMoney',totalSpendMoney);
+    //各个支出账单统计
     return seriesData;
 }
 
